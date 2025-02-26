@@ -178,7 +178,7 @@ const page = () => {
             className='px-5 md:px-10 lg:px-20 py-10 md:py-30'
         >
             <div className="text-xl md:text-4xl font-bold">Our Partner and Collaborators</div>
-            <div className="flex justify-start items-center py-5 md:gap-8">
+            <div className="flex justify-center items-center py-5 md:gap-8">
                 {
                     partners.map(item => {
                         return (

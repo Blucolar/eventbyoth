@@ -39,13 +39,13 @@ export const fadeInVariants = {
 };
 
 const heroDisplay = [
-    {
-        id: 1,
-        title: "Wedding Planning",
-        desc: "From elegant weddings to corporate galas, we bring your vision to life.",
-        image: hero1,
-        image2: hero3
-    },
+    // {
+    //     id: 1,
+    //     title: "Wedding Planning",
+    //     desc: "From elegant weddings to corporate galas, we bring your vision to life.",
+    //     image: hero1,
+    //     image2: hero3
+    // },
     {
         id: 2,
         title: "Corporate Events",

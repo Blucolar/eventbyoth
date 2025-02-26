@@ -72,7 +72,7 @@ const data = [
         id: 1,
         name: 'The Wedding Fair 2025',
         image: '/assets/img/wedpix.png',
-        amount: '150',
+        amount: '60',
         title: 'Event Details',
         description: "In us for an exclusive wedding event featuring top vendors, bridal fashion, and expert planners. Secure your spot today!",
         link: '#',
@@ -150,7 +150,7 @@ const page = () => {
                     className='text-white absolute top-0 z-10 flex justify-center h-full flex-col space-y-10 pl-5 lg:pl-20'
                     >
                     <p className='text-2xl sm:text-3xl md:text-5xl font-bold font-serif'>
-                        Experience the Ultimate Wedding <br /> Showcase at Wedding Fair '25
+                        Experience the Ultimate Fake Naija Wedding<br /> Showcase at Wedding Fair '25
                     </p>
                     <p className='text-lg md:text-2xl'>
                         Join us for an exclusive wedding event featuring top vendors, <br /> bridal fashion, and expert planners. Secure your spot today

@@ -1,7 +1,7 @@
 'use client'
 import HeroComponent from '@/components/HeroComponent';
 import React, { useState } from 'react';
-import heroImg from '../../../public/assets/img/webp3.png';
+import heroImg from '../../../public/assets/img/services-hero.png';
 import { Link as ScrollTo } from "react-scroll";
 import { AiOutlineDown } from 'react-icons/ai';
 import aboutImg from '../../../public/assets/img/about-us.png'

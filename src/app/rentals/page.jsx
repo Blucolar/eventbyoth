@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React,{useState} from 'react'
 import rent1Img from '../../../public/assets/img/rent1.png'
 import rent2Img from '../../../public/assets/img/rent2.png'
 import rent3Img from '../../../public/assets/img/rent3.png'
@@ -8,7 +8,6 @@ import rent5Img from '../../../public/assets/img/r2.webp'
 import rent6Img from '../../../public/assets/img/r3.webp'
 
 import { motion } from 'framer-motion';
-import { Button, ButtonLinkOrange } from '@/shared/ButtonLink'
 import Image from 'next/image'
 import HeroComponent from '@/components/HeroComponent';
 import heroImg from '../../../public/assets/img/rentals.webp'
@@ -17,6 +16,11 @@ import { fadeInVariants } from '../page'
 import { fadeIn } from '@/shared/GlobalAnimation'
 import Link from 'next/link'
 import CalendlyPopup from '@/components/CalendlyEmbed'
+import ModalComponent from '@/components/ModalComponent'
+import { ButtonLinkOrange } from '@/shared/ButtonLink'
+import useFadeIn from '@/shared/GlobalAnimation';
+
+const MotionImage = motion(Image); 
 
 export const rentalData = [
     {
@@ -24,58 +28,73 @@ export const rentalData = [
         image: rent1Img,
         title: "Crockeries",
         price: '20,303',
-        btnText: '#'
+        btnText: '#',
+        desc: "erspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium"
     },
     {
         id: 2,
         image: rent5Img,
         title: "Foam Sticks",
         price: '20,039',
-        btnText: '#'
+        btnText: '#',
+        desc: "erspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium"
     },
     {
         id: 3,
         image: rent3Img,
         title: 'Sashes',
         price: '400,303',
-        btnText: '#'
+        btnText: '#',
+        desc: "erspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium"
     },
     {
         id: 4,
         image: rent4Img,
         title: 'After Party Props',
         price: '400,303',
-        btnText: '#'
+        btnText: '#',
+        desc: "erspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium"
     },
     {
         id: 5,
         image: rent2Img,
         title: 'Gold Chiavari Chair',
         price: '400,303',
-        btnText: '#'
+        btnText: '#',
+        desc: "erspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium"
     },
     {
         id: 6,
         image: rent6Img,
         title: 'Magazine Photo booth',
         price: '400,303',
-        btnText: '#'
+        btnText: '#',
+        desc: "erspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium"
     }
 ]
 
 const page = () => {
+    const [selectedCard, setSelectedCard] = useState(null);
+    const [openModal, setOpenModal] = useState(false)
+    const fadeIn = useFadeIn(0.5);
+
+    const handleModal = (card) => {
+        setSelectedCard(card);
+        setOpenModal(true);
+        console.log(card)
+    };
+    
+    const closeModal = () => {
+        setSelectedCard(null);
+        setOpenModal(false);
+    };
   return (
     <>
         <section>
             <HeroComponent title={'Rentals'} image={heroImg}/>
         </section>
 
-        <motion.section
-            // initial="hidden"
-            // whileInView="visible"
-            // viewport={{ amount: 0.3 }} 
-            // variants={fadeInVariants} 
-            
+        <motion.section            
          id='rentals'className='px-5 md:px-10 lg:px-20 py-10 md:py-30 bg-lightgray'
          >
             <h1 className="text-2xl lg:text-4xl  font-bold mb-4 py-5">Rentals  </h1>
@@ -84,12 +103,8 @@ const page = () => {
                     rentalData.map((item) => {
                         return (
                             <motion.div
-                                // initial="hidden"
-                                // whileInView="visible"
-                                // viewport={{ amount: 0.3 }} 
-                                // variants={fadeInVariants}  
-                                // {...{ ...fadeIn, transition: { delay: 0.5 } }}
-                                key={item.id} className='h-[70vh] gap-4 rounded-lg overflow-hidden bg-white'>
+                    
+                                key={item.id} className='h-[70vh] gap-4 rounded-lg overflow-hidden bg-white' onClick={() => handleModal(item)}  >
                                 <motion.div
                                     whileHover={{ scale: 1.05 }} 
                                     transition={{ type: "keyframes", stiffness: 300 }} 
@@ -99,12 +114,8 @@ const page = () => {
                                 <div className='h-full px-3 '>
                                     <h2 className='text-lg font-semibold py-2'>{item.title}</h2>
                                     <div className='flex justify-between items-center'>
-                                        {/* <p className='text-neutral'>${item.price}</p> */}
-                                        {/* <div className='capitalize'>
-                                            <Button name={item.btnText}/>
-                                        </div> */}
-                                        <div className='py-3 rounded flex justify-center items-center text-center border border-primary w-full'>
-                                            <Link href={item.btnText} className='text-primary rounded h-full w-full'>Rent Now</Link>
+                                        <div className='rounded flex justify-center items-center text-center border border-primary w-full'>
+                                            <button className='p-3 bg-white text-primary border-primary rounded '>Rent Now</button>
                                         </div>
                                     </div>
                                 </div>
@@ -113,13 +124,44 @@ const page = () => {
                     })
                 }
             </div>
+             {/* modal */}
+             <ModalComponent isOpen={openModal} onClose={closeModal}>
+                {selectedCard ? (
+                   <div className='flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8'>
+                        <div className='w-full lg:w-1/2 h-[40vh] md:h-[50vh] relative rounded-lg m-5 min-h-full overflow-hidden  lg:flex'>
+                       
+                            <MotionImage 
+                                whileHover={{ scale: 1.2 }}
+                                transition={{ duration: 0.5 }}
+                                src={selectedCard.image} alt='image-' className='h-full w-full object-cover rounded-lg absolute z-10 inset-0 '/>
+            
+                        
+                        </div>
+                    {/* <div className='w-1/2 border min-h-[100%]'> */}
+                        <div className='w-full lg:w-1/2'>
+                        <p className='text-xl font-bold py-2'>{selectedCard?.title}</p>
+                        <p className='text-neutral py-2'>{selectedCard?.desc}</p>
+                        {/* <p className='font-semibold py-2'>{selectedCard.details.title}</p> */}
+                      
+                        <div className='flex justify-end my-5'>
+                            <ButtonLinkOrange name={'Rent Now'} link={'#'}/> 
+                        </div>
+                        </div>
+
+                    {/* </div> */}
+                   </div>
+                    
+                ):
+                <p>No card selected</p>  
+            }
+            </ModalComponent>
             <div className="text-center pt-10 font-semibold">
                 <Link href ="/rentals" className="text-primary text-xl">Load More</Link>
             </div>
         </motion.section>
 
         {/* next event */}
-        <motion.section {...{ ...fadeIn, transition: { delay: 0.5 } }}  className='pt-10 md:pt-30 h-full'>
+        <motion.section  {...fadeIn}  className='pt-10 md:pt-30 h-full'>
             {/* <div className='flex h-full items-center'> */}
                 <div className='flex flex-col md:flex-row w-full h-full justify-between'>  
                     <div className='h-[70vh] w-full md:w-1/2 bg-primary/10 p-5 md:p-10 lg:p-20 flex flex-col justify-center space-y-5'>

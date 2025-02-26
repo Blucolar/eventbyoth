@@ -15,14 +15,14 @@ const ModalComponent = ({isOpen, onClose, children}) => {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white rounded-lg p-6 shadow-lg relative mx-w-md w-full md:w-3/4 h-4/5 overflow-auto"
+              className="bg-white rounded-lg p-6 shadow-lg relative mx-w-md w-full md:w-3/4 max-h-4/5 overflow-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <button
-                className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
                 onClick={onClose}
                 >
                 ✖
